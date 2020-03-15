@@ -72,13 +72,13 @@
 
                 if (localStorage.getItem("planner")) {
                     var found = false;
-                    for (var i = 0; i < oldPlannerData.length; i++) {
-                        if (oldPlannerData[i].id === $(this).attr("name")) {
-                            // console.log("match")
-                            found = true;
-                            oldPlannerData[i].message = $("#input-" + $(this).attr("name")).val()
-                        }
+                    // for (var i = 0; i < oldPlannerData.length; i++) {
+                    if (oldPlannerData[i].id === $(this).attr("name")) {
+                        // console.log("match")
+                        found = true;
+                        oldPlannerData[i].message = $("#input-" + $(this).attr("name")).val()
                     }
+                    // }
 
                     if (found === false) {
                         oldPlannerData.push({
