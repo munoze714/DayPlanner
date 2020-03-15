@@ -29,23 +29,30 @@
 
         var nowMoment = moment().format('MMMM Do YYYY, h:mm:ss a');
         var hour = moment().toObject().hours;
-        console.log(hour)
+        // console.log(hour)
 
         var eDisplayDate = document.getElementById("currentDay");
         eDisplayDate.innerHTML = nowMoment;
-
-        //    function 
 
         $(document).ready(function () {
             var timeArray = [
                 9, 10, 11, 12, 13, 14, 15, 16, 17
             ]
+
             for (var i = 0; i < timeArray.length; i++) {
+                var ampm = "";
+                if (timeArray[i] > 12) {
+                    ampm = timeArray[i] - 12 + "pm";
+                } else {
+                    ampm = timeArray[i] + "am";
+                }
+
                 var timeRow = $("<div>").addClass("row").addClass("time-block");
-                var timeCol = $("<div>").addClass("col-2").addClass("hour").attr("id", "type-" + hour).text(timeArray[i]);
-                var eventCol = $("<input>").addClass("col-8").addClass("textarea").addClass("description").attr("id", "input-" + timeArray[i]);
+                var timeCol = $("<div>").addClass("col-2").addClass("hour").attr("id", "type-" + hour).text(ampm);
+                var eventCol = $("<input>").addClass("col-8").addClass("textarea").addClass("description").attr("id", "input-" + timeArray[i]).attr("type", "text");
                 var saveCol = $("<button>").addClass("col-2").addClass("saveBtn").attr("name", timeArray[i]).addClass("far fa-save");
                 timeRow.append(timeCol, eventCol, saveCol);
+
                 if (timeArray[i] === hour) {
                     timeRow.addClass("present");
 
@@ -54,39 +61,55 @@
                 } else {
                     timeRow.addClass("future");
                 }
-                console.log(Math.abs(timeArray[i] - 12));
-
                 $("#time").append(timeRow);
             }
+            displayStart();
 
             $(".saveBtn").on("click", function () {
-                console.log("clickclick", $(this).attr("name"));
-                console.log($("#input-" + $(this).attr("name")).val());
+                // console.log($("#input-" + $(this).attr("name")).val());
                 var oldPlannerData = JSON.parse(localStorage.getItem("planner"))
-                console.log("oldPlannerData", oldPlannerData)
-                var found = false;
-                for (var i = 0; i < oldPlannerData.length; i++) {
-                    if (oldPlannerData[i].id === $(this).attr("name")) {
-                        console.log("match")
-                        found = true;
-                        oldPlannerData[i].message = $("#input-" + $(this).attr("name")).val()
+                // console.log("oldPlannerData", oldPlannerData)
+
+                if (localStorage.getItem("planner")) {
+                    var found = false;
+                    for (var i = 0; i < oldPlannerData.length; i++) {
+                        if (oldPlannerData[i].id === $(this).attr("name")) {
+                            // console.log("match")
+                            found = true;
+                            oldPlannerData[i].message = $("#input-" + $(this).attr("name")).val()
+                        }
                     }
-                }
-                if (found === false) {
-                    oldPlannerData.push({
+
+                    if (found === false) {
+                        oldPlannerData.push({
+                            id: $(this).attr("name"),
+                            message: $("#input-" + $(this).attr("name")).val()
+                        })
+                    }
+                    // console.log("oldplannerupdated", oldPlannerData)
+                    var stPlannerData = JSON.stringify(oldPlannerData);
+                    localStorage.setItem("planner", stPlannerData);
+                } else {
+                    var brandNewPlanner = []
+                    brandNewPlanner.push({
                         id: $(this).attr("name"),
                         message: $("#input-" + $(this).attr("name")).val()
                     })
+
+                    var stPlannerData = JSON.stringify(brandNewPlanner);
+                    localStorage.setItem("planner", stPlannerData);
                 }
-                console.log("oldplannerupdated", oldPlannerData)
-                var stPlannerData = JSON.stringify(oldPlannerData);
-                localStorage.setItem("planner", stPlannerData);
             });
+
+            function displayStart() {
+                var startPlanner = JSON.parse(localStorage.getItem("planner"));
+                // console.log();
+                for (var i = 0; i < startPlanner.length; i++) {
+                    $("#input-" + startPlanner[i].id).val(startPlanner[i].message);
+                    // console.log("input-" + startPlanner[i].id)
+                }
+            }
         });
-
-
-
-
     </script>
 </body>
 
