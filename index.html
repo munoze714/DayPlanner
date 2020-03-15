@@ -68,11 +68,15 @@
             $(".saveBtn").on("click", function () {
                 // console.log($("#input-" + $(this).attr("name")).val());
                 var oldPlannerData = JSON.parse(localStorage.getItem("planner"))
+                if (oldPlannerData.length === null) {
+                    oldPlannerData[4] = "Lunch at Momo's"
+                }
                 // console.log("oldPlannerData", oldPlannerData)
 
                 if (localStorage.getItem("planner")) {
                     var found = false;
                     for (var i = 0; i < oldPlannerData.length; i++) {
+                        oldPlannerData[4] = "Lunch at Momo's";
                         if (oldPlannerData[i].id === $(this).attr("name")) {
                             // console.log("match")
                             found = true;
@@ -96,7 +100,7 @@
                         message: $("#input-" + $(this).attr("name")).val()
 
                     })
-                    oldPlannerData[4] = "Lunch at Momo's"
+
                     var stPlannerData = JSON.stringify(brandNewPlanner);
                     localStorage.setItem("planner", stPlannerData);
                 }
@@ -104,7 +108,7 @@
 
             function displayStart() {
                 var startPlanner = JSON.parse(localStorage.getItem("planner"));
-                // console.log();
+
                 for (var i = 0; i < startPlanner.length; i++) {
                     $("#input-" + startPlanner[i].id).val(startPlanner[i].message);
                     // console.log("input-" + startPlanner[i].id)
