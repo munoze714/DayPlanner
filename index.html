@@ -104,14 +104,17 @@
 
             function displayStart() {
                 var startPlanner = JSON.parse(localStorage.getItem("planner"));
+                if (startPlanner) {
+                    for (var i = 0; i < startPlanner.length; i++) {
+                        $("#input-" + startPlanner[i].id).val(startPlanner[i].message);
+                        // console.log("input-" + startPlanner[i].id)
+                    }
+                    if (length === null) {
+                        $("#input-13") = "Lunch at Momo's"
+                    }
 
-                for (var i = 0; i < startPlanner.length; i++) {
-                    $("#input-" + startPlanner[i].id).val(startPlanner[i].message);
-                    // console.log("input-" + startPlanner[i].id)
                 }
-                if (length === null) {
-                    $("#input-13") = "Lunch at Momo's"
-                }
+
             }
         });
     </script>
