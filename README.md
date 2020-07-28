@@ -1,25 +1,51 @@
-# DayPlanner
-Criteria:
+# Project Title:
 
-Calendar application that allows the user to save events for each hour of the day. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery. The app should display standard business hours (9 a.m. to 5 p.m.). Each time slot should represent one hour and contain the following:
+Work Day Scheduler
 
-The time
+## Description:
 
-A field to hold user input
+A place to store the daily tasks a user may encounter during a typical workday. This day planner allows the user to enter and save a task in each hour block. The blocks are color-coded to let the user know which events have passed, are happening, and are coming up. The user's inputs are saved to the page using local storage.
 
-A save button
+## Table of Contents
 
-Clicking on the save button will store the time and user input in localStorage. Near the top of the calendar, the application should display the current day. Additionally, each hour should be color coded to reflect whether the time slot is in the past, the present, or the future. This will change depending on the time of day. You'll need to use the Moment.js library to work with date and time. Be sure to read the documentation carefully and concentrate on using Moment.js in the browser.`
+- [Deployed URL](#DeployedURL)
+- [Installation](#Installation)
+- [Technologies Used](#TechnologiesUsed)
+- [License](#License)
+- [Contributing](#Contributing)
+- [Questions](#Questions)
 
+## Deployed URL
 
+[https://munoze714.github.io/DayPlanner/](https://munoze714.github.io/DayPlanner/)
 
+![alt text](assets/scheduler.png?raw=true "Work Day Scheduler")
 
+### Installation:
 
+- git clone
+- open in Browser
 
+### Technologies Used
 
+- JavaScript
+- HTML
+- JQuery
+- CSS
+- Bootstrap
+- moment.js
 
+### Licence:
 
+MIT
 
+### Contributing:
 
+![Node.js](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)
 
-Work Day Planner https://munoze714.github.io/DayPlanner/
+### Questions:
+
+![alt text](https://avatars0.githubusercontent.com/u/59346164?v=4)
+
+[munoze714@gmail.com
+](munoze714@gmail.com)
